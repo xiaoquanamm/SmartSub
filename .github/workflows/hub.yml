@@ -1,0 +1,25 @@
+name: Update Hub Clash
+on:
+  push:
+    paths:
+      - hub/token.txt
+  workflow_dispatch:
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build hub-clash.yaml
+        run: python hub/update_hub.py
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add hub-clash.yaml
+          git diff --cached --quiet || git commit -m "Update hub clash"
+          git push
