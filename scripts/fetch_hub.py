@@ -1,9 +1,20 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""从 hub.ccwork.nyc.mn 首页提取当日动态 token，拼出订阅链接并写入 config.yaml 的 subscribe 列表。
+"""从 hub.ccwork.nyc.mn 获取当日动态 token，拼出订阅链接并写入 config.yaml 的 subscribe 列表。
 
 仅使用 Python 标准库（urllib），无第三方依赖。
 由 GitHub Actions 工作流在运行 main.py 之前调用。
+
+token 获取策略：
+  首页的静态 HTML 里通常只含过期/示例 token，真正有效的当日 token 由页面
+  JS 在点击后填入（可能藏在 JS 变量里，变量名不一定叫 token）。因此脚本
+  按优先级收集所有 hex 候选并逐个校验：
+    1. share_sub?token=... 显式链接中的 token；
+    2. JS 中形如 "token": "..."（大小写不敏感）的定义；
+    3. 页面中所有裸露的 16 位 hex 字符串（当日有效 token 为 16 位）；
+    4. 页面中所有裸露的 32 位 hex 字符串（兜底）。
+  逐个用 share_sub 接口校验（有效 token 返回 Base64 节点内容，无效返回
+  HTTP 403/过期提示），第一个校验通过的即写入 config。
 """
 import base64
 import os
@@ -32,24 +43,28 @@ def http_get_text(url, timeout=30):
         return resp.read().decode(charset, errors="replace")
 
 
-def extract_tokens(html):
-    """收集页面中所有可能的 token 候选（按出现顺序去重）。
-
-    首页 HTML 中可能出现多个 share_sub?token= 链接（例如示例/过期值），
-    其中只有当天有效 token 能通过内容校验，因此必须逐个校验而非取第一个。
-    """
+def extract_candidates(html):
+    """按优先级收集 token 候选（去重，保持优先级顺序）。"""
     candidates = []
-    for m in re.finditer(r"share_sub\?token=([0-9a-fA-F]{8,128})", html):
-        tok = m.group(1)
-        if tok not in candidates:
+
+    def add(tok):
+        if tok and tok not in candidates:
             candidates.append(tok)
-    # 兜底：在页面 JS 中寻找形如 "token": "..." 的定义
+
+    # 1. 显式 share_sub?token= 链接
+    for m in re.finditer(r"share_sub\?token=([0-9a-fA-F]{8,128})", html):
+        add(m.group(1))
+    # 2. JS 中 "token": "..." 定义（大小写不敏感）
     for m in re.finditer(
             r'["\']token["\']\s*[:=]\s*["\']([0-9a-fA-F]{8,128})["\']',
-            html):
-        tok = m.group(1)
-        if tok not in candidates:
-            candidates.append(tok)
+            html, re.IGNORECASE):
+        add(m.group(1))
+    # 3. 裸露的 16 位 hex（当日有效 token 格式）
+    for m in re.finditer(r"\b[0-9a-fA-F]{16}\b", html):
+        add(m.group(0))
+    # 4. 裸露的 32 位 hex（兜底）
+    for m in re.finditer(r"\b[0-9a-fA-F]{32}\b", html):
+        add(m.group(0))
     return candidates
 
 
@@ -128,15 +143,15 @@ def main():
         print("错误：无法获取 hub 首页：%s" % e, file=sys.stderr)
         return 1
 
-    tokens = extract_tokens(html)
-    if not tokens:
+    candidates = extract_candidates(html)
+    if not candidates:
         print("错误：未能从 hub 首页提取到任何 token 候选",
               file=sys.stderr)
         return 1
 
-    print("找到 %d 个 token 候选，逐个校验..." % len(tokens))
+    print("找到 %d 个 token 候选，逐个校验..." % len(candidates))
     errors = []
-    for token in tokens:
+    for token in candidates:
         url = HUB_SUB_PREFIX + token
         try:
             validate_subscription(url)
