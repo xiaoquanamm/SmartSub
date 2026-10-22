@@ -1,0 +1,1618 @@
+port: 7890
+socks-port: 7891
+allow-lan: true
+mode: Rule
+log-level: info
+proxies:
+  - name: "CF官方优选9"
+    type: "vless"
+    server: "104.17.151.91"
+    port: 2087
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-4qk.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-4qk.pages.dev"
+  - name: "CF官方优选9 #2"
+    type: "vless"
+    server: "104.17.124.234"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-3hj.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-3hj.pages.dev"
+  - name: "CF官方优选15"
+    type: "vless"
+    server: "104.17.173.68"
+    port: 2096
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-c2d.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-c2d.pages.dev"
+  - name: "CF官方优选10"
+    type: "vless"
+    server: "104.17.60.72"
+    port: 2083
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-6t1.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-6t1.pages.dev"
+  - name: "CF官方优选67"
+    type: "vless"
+    server: "172.66.0.161"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-4qf.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-4qf.pages.dev"
+  - name: "CF官方优选7"
+    type: "vless"
+    server: "188.164.248.49"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-9u7.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-9u7.pages.dev"
+  - name: "地区随机 | 法国 FR | CDG | 89.168.59.98:443"
+    type: "vless"
+    server: "89.168.59.98"
+    port: 443
+    uuid: "736c0f70-e9cc-4cfb-b8ad-a4f1b5e6e65c"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-8u4.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-8u4.pages.dev"
+  - name: "地区随机 | 乌克兰 UA | KBP | 173.242.61.74:443"
+    type: "vless"
+    server: "173.242.61.74"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-6sx.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-6sx.pages.dev"
+  - name: "地区随机 | 印度 IN | BOM | 172.104.206.25:443"
+    type: "vless"
+    server: "172.104.206.25"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-6sx.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-6sx.pages.dev"
+  - name: "JP - 辣子鸡 TG@lzjjjjjjjjjjj"
+    type: "vless"
+    server: "8.222.185.236"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-818.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-818.pages.dev"
+  - name: "CF官方优选12"
+    type: "vless"
+    server: "104.17.127.90"
+    port: 2053
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-ajg.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-ajg.pages.dev"
+  - name: "CF 移动优选【TG:LSMOO】"
+    type: "vless"
+    server: "104.19.149.171"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-btp.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-btp.pages.dev"
+  - name: "S​G​ ​T​G​:​@​M​i​a​C​h​a​t​C​h​a​n​n​e​l"
+    type: "vless"
+    server: "172.236.140.241"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-57b.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-57b.pages.dev"
+  - name: "KR - 辣子鸡 TG@lzjjjjjjjjjjj"
+    type: "vless"
+    server: "144.24.78.206"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-8z4.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-8z4.pages.dev"
+  - name: "地区随机 | 立陶宛 LT | FRA | 89.116.23.145:8443"
+    type: "vless"
+    server: "89.116.23.145"
+    port: 8443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-cu9.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-cu9.pages.dev"
+  - name: "CF官方优选9 #3"
+    type: "vless"
+    server: "104.16.146.10"
+    port: 2087
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-mbf.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-mbf.pages.dev"
+  - name: "地区随机 | 泰国 TH | SIN | 103.114.201.154:443"
+    type: "vless"
+    server: "103.114.201.154"
+    port: 443
+    uuid: "736c0f70-e9cc-4cfb-b8ad-a4f1b5e6e65c"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-8u4.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-8u4.pages.dev"
+  - name: "CF官方优选48"
+    type: "vless"
+    server: "108.162.198.46"
+    port: 2053
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-4qf.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-4qf.pages.dev"
+  - name: "SG - 辣子鸡 TG@lzjjjjjjjjjjj"
+    type: "vless"
+    server: "43.106.62.104"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-8z4.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-8z4.pages.dev"
+  - name: "地区随机 | 白俄罗斯 BY | WAW | 185.179.82.246:443"
+    type: "vless"
+    server: "185.179.82.246"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-6sx.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-6sx.pages.dev"
+  - name: "CF官方优选15 #2"
+    type: "vless"
+    server: "104.17.148.197"
+    port: 2053
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-dg2.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-dg2.pages.dev"
+  - name: "地区随机 | 希腊 GR | ATH | 85.90.197.53:443"
+    type: "vless"
+    server: "85.90.197.53"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-cu9.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-cu9.pages.dev"
+  - name: "CF官方优选5"
+    type: "vless"
+    server: "108.162.198.131"
+    port: 2053
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-90d.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-90d.pages.dev"
+  - name: "CF官方优选14"
+    type: "vless"
+    server: "104.18.33.44"
+    port: 8443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-arj.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-arj.pages.dev"
+  - name: "CF官方优选16"
+    type: "vless"
+    server: "104.17.211.55"
+    port: 2083
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-cmo.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-cmo.pages.dev"
+  - name: "J​P​ ​T​G​:​@​M​i​a​C​h​a​t​C​h​a​n​n​e​l"
+    type: "vless"
+    server: "207.148.110.192"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-2vb.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-2vb.pages.dev"
+  - name: "SG"
+    type: "vless"
+    server: "77.93.90.231"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-c6i.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-c6i.pages.dev"
+  - name: "DE-Eons - 辣子鸡 TG@lzjjjjjjjjjjj"
+    type: "vless"
+    server: "64.118.159.219"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-8z4.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-8z4.pages.dev"
+  - name: "CF官方优选8"
+    type: "vless"
+    server: "172.66.1.141"
+    port: 2096
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-evd.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-evd.pages.dev"
+  - name: "地区随机 | 俄罗斯 RU | ARN | 45.146.165.68:8443"
+    type: "vless"
+    server: "45.146.165.68"
+    port: 8443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-cu9.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-cu9.pages.dev"
+  - name: "CF官方优选6"
+    type: "vless"
+    server: "104.17.17.3"
+    port: 8443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-c2d.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-c2d.pages.dev"
+  - name: "CF官方优选7 #2"
+    type: "vless"
+    server: "162.159.38.40"
+    port: 8443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-an8.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-an8.pages.dev"
+  - name: "地区随机 | 哈萨克斯坦 KZ | ALA | 213.148.26.246:8443"
+    type: "vless"
+    server: "213.148.26.246"
+    port: 8443
+    uuid: "736c0f70-e9cc-4cfb-b8ad-a4f1b5e6e65c"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-8u4.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-8u4.pages.dev"
+  - name: "CF官方优选11"
+    type: "vless"
+    server: "104.17.126.147"
+    port: 2083
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-aya.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-aya.pages.dev"
+  - name: "CF官方优选11 #2"
+    type: "vless"
+    server: "172.67.79.161"
+    port: 8443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-adu.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-adu.pages.dev"
+  - name: "CF官方优选16 #2"
+    type: "vless"
+    server: "104.17.155.77"
+    port: 2087
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-dbs.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-dbs.pages.dev"
+  - name: "地区随机 | 法国 FR | LHR | 109.120.179.99:443"
+    type: "vless"
+    server: "109.120.179.99"
+    port: 443
+    uuid: "736c0f70-e9cc-4cfb-b8ad-a4f1b5e6e65c"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-8u4.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-8u4.pages.dev"
+  - name: "US - 辣子鸡 TG@lzjjjjjjjjjjj"
+    type: "vless"
+    server: "47.75.104.254"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-818.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-818.pages.dev"
+  - name: "CF官方优选40"
+    type: "vless"
+    server: "172.67.77.134"
+    port: 8443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-4qf.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-4qf.pages.dev"
+  - name: "CF官方优选14 #2"
+    type: "vless"
+    server: "198.41.208.183"
+    port: 2083
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-8k4.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-8k4.pages.dev"
+  - name: "CF官方优选50"
+    type: "vless"
+    server: "104.17.159.213"
+    port: 2083
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-c6y.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-c6y.pages.dev"
+  - name: "CF官方优选10 #2"
+    type: "vless"
+    server: "104.17.124.199"
+    port: 2053
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-46z.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-46z.pages.dev"
+  - name: "电信 - 辣子鸡 TG@lzjjjjjjjjjjj"
+    type: "vless"
+    server: "2606:4700:91b2:9d7:453:dae1:adf1:f459"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-8z4.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-8z4.pages.dev"
+  - name: "CF官方优选6 #2"
+    type: "vless"
+    server: "172.67.68.196"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-9wr.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-9wr.pages.dev"
+  - name: "CF官方优选3"
+    type: "vless"
+    server: "162.159.38.224"
+    port: 2053
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-5qt.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-5qt.pages.dev"
+  - name: "CF官方优选9 #4"
+    type: "vless"
+    server: "104.17.61.14"
+    port: 8443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-1uq.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-1uq.pages.dev"
+  - name: "CF官方优选15 #3"
+    type: "vless"
+    server: "104.17.170.195"
+    port: 2096
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-brd.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-brd.pages.dev"
+  - name: "CF官方优选12 #2"
+    type: "vless"
+    server: "188.164.248.223"
+    port: 2053
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-bmr.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-bmr.pages.dev"
+  - name: "地区随机 | 日本 JP | NRT | 16.76.68.65:443"
+    type: "vless"
+    server: "16.76.68.65"
+    port: 443
+    uuid: "736c0f70-e9cc-4cfb-b8ad-a4f1b5e6e65c"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-8u4.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-8u4.pages.dev"
+  - name: "CF官方优选2"
+    type: "vless"
+    server: "104.17.122.238"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-dze.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-dze.pages.dev"
+  - name: "联通 - 辣子鸡 TG@lzjjjjjjjjjjj"
+    type: "vless"
+    server: "2606:4700:3038:e0d1:2e71:de6f:f129:17c1"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-8z4.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-8z4.pages.dev"
+  - name: "CF官方优选10 #3"
+    type: "vless"
+    server: "91.193.58.183"
+    port: 2087
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-8aq.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-8aq.pages.dev"
+  - name: "CF官方优选7 #3"
+    type: "vless"
+    server: "172.66.2.99"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-8aq.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-8aq.pages.dev"
+  - name: "CF官方优选5 #2"
+    type: "vless"
+    server: "104.17.97.26"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-bp5.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-bp5.pages.dev"
+  - name: "CF官方优选11 #3"
+    type: "vless"
+    server: "104.19.151.71"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-8f3.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-8f3.pages.dev"
+  - name: "US - 辣子鸡 TG@lzjjjjjjjjjjj #2"
+    type: "vless"
+    server: "47.254.122.134"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-8z4.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-8z4.pages.dev"
+  - name: "CF官方优选3 #2"
+    type: "vless"
+    server: "104.17.58.23"
+    port: 2096
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-eh5.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-eh5.pages.dev"
+  - name: "JP-日本"
+    type: "vless"
+    server: "38.47.110.42"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-d7r.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-d7r.pages.dev"
+  - name: "CF官方优选3 #3"
+    type: "vless"
+    server: "104.19.35.193"
+    port: 2083
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-z75.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-z75.pages.dev"
+  - name: "CF官方优选8 #2"
+    type: "vless"
+    server: "198.41.208.186"
+    port: 2053
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-aya.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-aya.pages.dev"
+  - name: "青云志【TG:LSMOO】"
+    type: "vless"
+    server: "blog.811520.xyz"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-btp.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-btp.pages.dev"
+  - name: "CF官方优选88"
+    type: "vless"
+    server: "172.67.73.42"
+    port: 2096
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-4qf.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-4qf.pages.dev"
+  - name: "CF官方优选6 #3"
+    type: "vless"
+    server: "104.17.27.247"
+    port: 2087
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-46z.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-46z.pages.dev"
+  - name: "CF 电信优选【TG:LSMOO】"
+    type: "vless"
+    server: "172.66.1.250"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-btp.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-btp.pages.dev"
+  - name: "CF官方优选2 #2"
+    type: "vless"
+    server: "91.193.59.11"
+    port: 2096
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-3dy.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-3dy.pages.dev"
+  - name: "CF官方优选53"
+    type: "vless"
+    server: "104.17.163.141"
+    port: 2087
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-4nv.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-4nv.pages.dev"
+  - name: "CF官方优选17"
+    type: "vless"
+    server: "91.193.59.112"
+    port: 8443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-c6y.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-c6y.pages.dev"
+  - name: "JP - 辣子鸡 TG@lzjjjjjjjjjjj #2"
+    type: "vless"
+    server: "8.219.195.31"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-8z4.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-8z4.pages.dev"
+  - name: "CF官方优选12 #3"
+    type: "vless"
+    server: "104.26.2.74"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-dci.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-dci.pages.dev"
+  - name: "CF官方优选19"
+    type: "vless"
+    server: "172.66.3.77"
+    port: 2096
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-46z.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-46z.pages.dev"
+  - name: "CF官方优选6 #4"
+    type: "vless"
+    server: "104.16.156.19"
+    port: 2083
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-a1k.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-a1k.pages.dev"
+  - name: "CF官方优选12 #4"
+    type: "vless"
+    server: "172.67.64.50"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-97o.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-97o.pages.dev"
+  - name: "HK - 辣子鸡 TG@lzjjjjjjjjjjj"
+    type: "vless"
+    server: "8.218.228.242"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-4g8.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-4g8.pages.dev"
+  - name: "US - 辣子鸡 TG@lzjjjjjjjjjjj #3"
+    type: "vless"
+    server: "47.75.104.211"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-8z4.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-8z4.pages.dev"
+  - name: "CF官方优选71"
+    type: "vless"
+    server: "104.19.32.250"
+    port: 2053
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-4nv.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-4nv.pages.dev"
+  - name: "CF官方优选1"
+    type: "vless"
+    server: "104.17.27.210"
+    port: 2083
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-3n1.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-3n1.pages.dev"
+  - name: "CF官方优选10 #4"
+    type: "vless"
+    server: "91.193.58.110"
+    port: 2087
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-79o.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-79o.pages.dev"
+  - name: "地区随机 | 摩尔多瓦 MD | OTP | 146.19.213.60:443"
+    type: "vless"
+    server: "146.19.213.60"
+    port: 443
+    uuid: "736c0f70-e9cc-4cfb-b8ad-a4f1b5e6e65c"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-8u4.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-8u4.pages.dev"
+  - name: "CF官方优选3 #4"
+    type: "vless"
+    server: "108.162.198.121"
+    port: 2087
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-3hj.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-3hj.pages.dev"
+  - name: "CF官方优选12 #5"
+    type: "vless"
+    server: "104.17.103.205"
+    port: 2096
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-9tk.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-9tk.pages.dev"
+  - name: "地区随机 | 冰岛 IS | KEF | 194.247.183.86:8443"
+    type: "vless"
+    server: "194.247.183.86"
+    port: 8443
+    uuid: "736c0f70-e9cc-4cfb-b8ad-a4f1b5e6e65c"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-8u4.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-8u4.pages.dev"
+  - name: "CF官方优选10 #5"
+    type: "vless"
+    server: "104.16.249.208"
+    port: 8443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-5pq.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-5pq.pages.dev"
+  - name: "CF官方优选7 #4"
+    type: "vless"
+    server: "104.17.154.148"
+    port: 2053
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-6r1.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-6r1.pages.dev"
+  - name: "优选反代 - 辣子鸡 TG@lzjjjjjjjjjjj"
+    type: "vless"
+    server: "43.163.207.61"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-8z4.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-8z4.pages.dev"
+  - name: "US"
+    type: "vless"
+    server: "136.0.39.35"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-2jv.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-2jv.pages.dev"
+  - name: "CF官方优选10 #6"
+    type: "vless"
+    server: "162.159.38.249"
+    port: 2053
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-8k4.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-8k4.pages.dev"
+  - name: "S​G​ ​T​G​:​@​M​i​a​C​h​a​t​C​h​a​n​n​e​l #2"
+    type: "vless"
+    server: "13.215.95.201"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-33g.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-33g.pages.dev"
+  - name: "地区随机 | 阿拉伯联合酋长国 AE | DXB | 147.78.0.186:8443"
+    type: "vless"
+    server: "147.78.0.186"
+    port: 8443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-6sx.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-6sx.pages.dev"
+  - name: "地区随机 | 希腊 GR | ATH | 85.90.197.114:443"
+    type: "vless"
+    server: "85.90.197.114"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-cu9.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-cu9.pages.dev"
+  - name: "CF官方优选1 #2"
+    type: "vless"
+    server: "198.41.208.111"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-cls.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-cls.pages.dev"
+  - name: "CF官方优选8 #3"
+    type: "vless"
+    server: "104.16.241.97"
+    port: 2083
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-dci.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-dci.pages.dev"
+  - name: "CF官方优选66"
+    type: "vless"
+    server: "104.19.147.63"
+    port: 2087
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-4nv.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-4nv.pages.dev"
+  - name: "CF官方优选11 #4"
+    type: "vless"
+    server: "104.17.16.98"
+    port: 8443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-97o.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-97o.pages.dev"
+  - name: "CF官方优选16 #3"
+    type: "vless"
+    server: "104.17.158.179"
+    port: 2096
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-25a.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-25a.pages.dev"
+  - name: "CF官方优选6 #5"
+    type: "vless"
+    server: "104.19.33.182"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-7zl.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-7zl.pages.dev"
+  - name: "地区随机 | 德国 DE | FRA | 178.104.210.196:443"
+    type: "vless"
+    server: "178.104.210.196"
+    port: 443
+    uuid: "736c0f70-e9cc-4cfb-b8ad-a4f1b5e6e65c"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-8u4.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-8u4.pages.dev"
+  - name: "地区随机 | 挪威 NO | CPH | 212.147.234.124:443"
+    type: "vless"
+    server: "212.147.234.124"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-6sx.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-6sx.pages.dev"
+  - name: "地区随机 | 匈牙利 HU | BUD | 38.180.225.247:2053"
+    type: "vless"
+    server: "38.180.225.247"
+    port: 2053
+    uuid: "736c0f70-e9cc-4cfb-b8ad-a4f1b5e6e65c"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-8u4.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-8u4.pages.dev"
+  - name: "CF官方优选15 #4"
+    type: "vless"
+    server: "104.17.214.131"
+    port: 2053
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-8t5.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-8t5.pages.dev"
+  - name: "CF官方优选10 #7"
+    type: "vless"
+    server: "104.17.175.76"
+    port: 443
+    uuid: "af49a945-e7e6-467d-9357-9f594516421b"
+    udp: true
+    network: "ws"
+    tls: true
+    servername: "proxytunnel-a1d.pages.dev"
+    client-fingerprint: "chrome"
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "proxytunnel-a1d.pages.dev"
+proxy-groups:
+  - name: "PROXY"
+    type: select
+    proxies:
+      - "AUTO"
+      - "CF官方优选9"
+      - "CF官方优选9 #2"
+      - "CF官方优选15"
+      - "CF官方优选10"
+      - "CF官方优选67"
+      - "CF官方优选7"
+      - "地区随机 | 法国 FR | CDG | 89.168.59.98:443"
+      - "地区随机 | 乌克兰 UA | KBP | 173.242.61.74:443"
+      - "地区随机 | 印度 IN | BOM | 172.104.206.25:443"
+      - "JP - 辣子鸡 TG@lzjjjjjjjjjjj"
+      - "CF官方优选12"
+      - "CF 移动优选【TG:LSMOO】"
+      - "S​G​ ​T​G​:​@​M​i​a​C​h​a​t​C​h​a​n​n​e​l"
+      - "KR - 辣子鸡 TG@lzjjjjjjjjjjj"
+      - "地区随机 | 立陶宛 LT | FRA | 89.116.23.145:8443"
+      - "CF官方优选9 #3"
+      - "地区随机 | 泰国 TH | SIN | 103.114.201.154:443"
+      - "CF官方优选48"
+      - "SG - 辣子鸡 TG@lzjjjjjjjjjjj"
+      - "地区随机 | 白俄罗斯 BY | WAW | 185.179.82.246:443"
+      - "CF官方优选15 #2"
+      - "地区随机 | 希腊 GR | ATH | 85.90.197.53:443"
+      - "CF官方优选5"
+      - "CF官方优选14"
+      - "CF官方优选16"
+      - "J​P​ ​T​G​:​@​M​i​a​C​h​a​t​C​h​a​n​n​e​l"
+      - "SG"
+      - "DE-Eons - 辣子鸡 TG@lzjjjjjjjjjjj"
+      - "CF官方优选8"
+      - "地区随机 | 俄罗斯 RU | ARN | 45.146.165.68:8443"
+      - "CF官方优选6"
+      - "CF官方优选7 #2"
+      - "地区随机 | 哈萨克斯坦 KZ | ALA | 213.148.26.246:8443"
+      - "CF官方优选11"
+      - "CF官方优选11 #2"
+      - "CF官方优选16 #2"
+      - "地区随机 | 法国 FR | LHR | 109.120.179.99:443"
+      - "US - 辣子鸡 TG@lzjjjjjjjjjjj"
+      - "CF官方优选40"
+      - "CF官方优选14 #2"
+      - "CF官方优选50"
+      - "CF官方优选10 #2"
+      - "电信 - 辣子鸡 TG@lzjjjjjjjjjjj"
+      - "CF官方优选6 #2"
+      - "CF官方优选3"
+      - "CF官方优选9 #4"
+      - "CF官方优选15 #3"
+      - "CF官方优选12 #2"
+      - "地区随机 | 日本 JP | NRT | 16.76.68.65:443"
+      - "CF官方优选2"
+      - "联通 - 辣子鸡 TG@lzjjjjjjjjjjj"
+      - "CF官方优选10 #3"
+      - "CF官方优选7 #3"
+      - "CF官方优选5 #2"
+      - "CF官方优选11 #3"
+      - "US - 辣子鸡 TG@lzjjjjjjjjjjj #2"
+      - "CF官方优选3 #2"
+      - "JP-日本"
+      - "CF官方优选3 #3"
+      - "CF官方优选8 #2"
+      - "青云志【TG:LSMOO】"
+      - "CF官方优选88"
+      - "CF官方优选6 #3"
+      - "CF 电信优选【TG:LSMOO】"
+      - "CF官方优选2 #2"
+      - "CF官方优选53"
+      - "CF官方优选17"
+      - "JP - 辣子鸡 TG@lzjjjjjjjjjjj #2"
+      - "CF官方优选12 #3"
+      - "CF官方优选19"
+      - "CF官方优选6 #4"
+      - "CF官方优选12 #4"
+      - "HK - 辣子鸡 TG@lzjjjjjjjjjjj"
+      - "US - 辣子鸡 TG@lzjjjjjjjjjjj #3"
+      - "CF官方优选71"
+      - "CF官方优选1"
+      - "CF官方优选10 #4"
+      - "地区随机 | 摩尔多瓦 MD | OTP | 146.19.213.60:443"
+      - "CF官方优选3 #4"
+      - "CF官方优选12 #5"
+      - "地区随机 | 冰岛 IS | KEF | 194.247.183.86:8443"
+      - "CF官方优选10 #5"
+      - "CF官方优选7 #4"
+      - "优选反代 - 辣子鸡 TG@lzjjjjjjjjjjj"
+      - "US"
+      - "CF官方优选10 #6"
+      - "S​G​ ​T​G​:​@​M​i​a​C​h​a​t​C​h​a​n​n​e​l #2"
+      - "地区随机 | 阿拉伯联合酋长国 AE | DXB | 147.78.0.186:8443"
+      - "地区随机 | 希腊 GR | ATH | 85.90.197.114:443"
+      - "CF官方优选1 #2"
+      - "CF官方优选8 #3"
+      - "CF官方优选66"
+      - "CF官方优选11 #4"
+      - "CF官方优选16 #3"
+      - "CF官方优选6 #5"
+      - "地区随机 | 德国 DE | FRA | 178.104.210.196:443"
+      - "地区随机 | 挪威 NO | CPH | 212.147.234.124:443"
+      - "地区随机 | 匈牙利 HU | BUD | 38.180.225.247:2053"
+      - "CF官方优选15 #4"
+      - "CF官方优选10 #7"
+  - name: "AUTO"
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    proxies:
+      - "CF官方优选9"
+      - "CF官方优选9 #2"
+      - "CF官方优选15"
+      - "CF官方优选10"
+      - "CF官方优选67"
+      - "CF官方优选7"
+      - "地区随机 | 法国 FR | CDG | 89.168.59.98:443"
+      - "地区随机 | 乌克兰 UA | KBP | 173.242.61.74:443"
+      - "地区随机 | 印度 IN | BOM | 172.104.206.25:443"
+      - "JP - 辣子鸡 TG@lzjjjjjjjjjjj"
+      - "CF官方优选12"
+      - "CF 移动优选【TG:LSMOO】"
+      - "S​G​ ​T​G​:​@​M​i​a​C​h​a​t​C​h​a​n​n​e​l"
+      - "KR - 辣子鸡 TG@lzjjjjjjjjjjj"
+      - "地区随机 | 立陶宛 LT | FRA | 89.116.23.145:8443"
+      - "CF官方优选9 #3"
+      - "地区随机 | 泰国 TH | SIN | 103.114.201.154:443"
+      - "CF官方优选48"
+      - "SG - 辣子鸡 TG@lzjjjjjjjjjjj"
+      - "地区随机 | 白俄罗斯 BY | WAW | 185.179.82.246:443"
+      - "CF官方优选15 #2"
+      - "地区随机 | 希腊 GR | ATH | 85.90.197.53:443"
+      - "CF官方优选5"
+      - "CF官方优选14"
+      - "CF官方优选16"
+      - "J​P​ ​T​G​:​@​M​i​a​C​h​a​t​C​h​a​n​n​e​l"
+      - "SG"
+      - "DE-Eons - 辣子鸡 TG@lzjjjjjjjjjjj"
+      - "CF官方优选8"
+      - "地区随机 | 俄罗斯 RU | ARN | 45.146.165.68:8443"
+      - "CF官方优选6"
+      - "CF官方优选7 #2"
+      - "地区随机 | 哈萨克斯坦 KZ | ALA | 213.148.26.246:8443"
+      - "CF官方优选11"
+      - "CF官方优选11 #2"
+      - "CF官方优选16 #2"
+      - "地区随机 | 法国 FR | LHR | 109.120.179.99:443"
+      - "US - 辣子鸡 TG@lzjjjjjjjjjjj"
+      - "CF官方优选40"
+      - "CF官方优选14 #2"
+      - "CF官方优选50"
+      - "CF官方优选10 #2"
+      - "电信 - 辣子鸡 TG@lzjjjjjjjjjjj"
+      - "CF官方优选6 #2"
+      - "CF官方优选3"
+      - "CF官方优选9 #4"
+      - "CF官方优选15 #3"
+      - "CF官方优选12 #2"
+      - "地区随机 | 日本 JP | NRT | 16.76.68.65:443"
+      - "CF官方优选2"
+      - "联通 - 辣子鸡 TG@lzjjjjjjjjjjj"
+      - "CF官方优选10 #3"
+      - "CF官方优选7 #3"
+      - "CF官方优选5 #2"
+      - "CF官方优选11 #3"
+      - "US - 辣子鸡 TG@lzjjjjjjjjjjj #2"
+      - "CF官方优选3 #2"
+      - "JP-日本"
+      - "CF官方优选3 #3"
+      - "CF官方优选8 #2"
+      - "青云志【TG:LSMOO】"
+      - "CF官方优选88"
+      - "CF官方优选6 #3"
+      - "CF 电信优选【TG:LSMOO】"
+      - "CF官方优选2 #2"
+      - "CF官方优选53"
+      - "CF官方优选17"
+      - "JP - 辣子鸡 TG@lzjjjjjjjjjjj #2"
+      - "CF官方优选12 #3"
+      - "CF官方优选19"
+      - "CF官方优选6 #4"
+      - "CF官方优选12 #4"
+      - "HK - 辣子鸡 TG@lzjjjjjjjjjjj"
+      - "US - 辣子鸡 TG@lzjjjjjjjjjjj #3"
+      - "CF官方优选71"
+      - "CF官方优选1"
+      - "CF官方优选10 #4"
+      - "地区随机 | 摩尔多瓦 MD | OTP | 146.19.213.60:443"
+      - "CF官方优选3 #4"
+      - "CF官方优选12 #5"
+      - "地区随机 | 冰岛 IS | KEF | 194.247.183.86:8443"
+      - "CF官方优选10 #5"
+      - "CF官方优选7 #4"
+      - "优选反代 - 辣子鸡 TG@lzjjjjjjjjjjj"
+      - "US"
+      - "CF官方优选10 #6"
+      - "S​G​ ​T​G​:​@​M​i​a​C​h​a​t​C​h​a​n​n​e​l #2"
+      - "地区随机 | 阿拉伯联合酋长国 AE | DXB | 147.78.0.186:8443"
+      - "地区随机 | 希腊 GR | ATH | 85.90.197.114:443"
+      - "CF官方优选1 #2"
+      - "CF官方优选8 #3"
+      - "CF官方优选66"
+      - "CF官方优选11 #4"
+      - "CF官方优选16 #3"
+      - "CF官方优选6 #5"
+      - "地区随机 | 德国 DE | FRA | 178.104.210.196:443"
+      - "地区随机 | 挪威 NO | CPH | 212.147.234.124:443"
+      - "地区随机 | 匈牙利 HU | BUD | 38.180.225.247:2053"
+      - "CF官方优选15 #4"
+      - "CF官方优选10 #7"
+rules:
+  - "MATCH,PROXY"
