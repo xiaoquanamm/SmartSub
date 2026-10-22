@@ -1,16 +1,14 @@
-﻿# 性能配置
+# 性能配置
 performance:
   max_workers: 32              # 最大并发线程数（根据机器性能调整）
   content_limit_mb: 3          # 下载内容大小限制（MB）
   request_timeout: 6           # 请求超时时间（秒）
-
 
 # 质量控制配置
 quality_control:
   min_nodes: 3                 # 订阅最少节点数（少于此数量视为低质量）
   enable_duplicate_check: true # 启用内容去重（消除重复订阅）
   enable_quality_check: true   # 启用质量检查（过滤空订阅和垃圾内容）
-
 
 # 节点配置
 nodes:
@@ -21,14 +19,172 @@ nodes:
     - vless
     - hysteria2
 
+# Telegram 频道配置
+tgchannel:
+  - https://t.me/WFVPN
+  - https://t.me/ripaojiedian
+  - https://t.me/FProxies
+  - https://t.me/TGVPN777
+  - https://t.me/v2queen
+  # 2025-06-23 新增
+  - https://t.me/ZDYZ2
+  #- https://t.me/vpn880
+  - https://t.me/freeyule
+  - https://t.me/suyucom
+  # 2024-03-01 新增
+  - https://t.me/ShareCentre
+  #- https://t.me/onessr
+  #- https://t.me/freeshadowsock
+  - https://t.me/changfengchannel
+  - https://t.me/Free166
+  #- https://t.me/aiuvpn
+  #- https://t.me/ltscxk
+  #- https://t.me/bpjzx2
+  - https://t.me/xiaoxinv
+  #- https://t.me/murandepindao
+  - https://t.me/ShareCentrePro
+  - https://t.me/zyfxlnn
+  - https://t.me/juzibaipiao
+  - https://t.me/freeVPNjd
+  # 2024-03-01 新增
+  - https://t.me/v2raydailyupdate
+  - https://t.me/allv2board
+  # 2024-02-29 新增
+  #- https://t.me/jcvpn
+  - https://t.me/wxdy666
+  #下面是自己添加的 LRC
+  #- https://t.me/sharingnode      #节点地址http://file.52nfw.cn/word/obtain.php?user=111111&id=1
+  #- https://t.me/aifenxiang2020   #分享的是节点信息
+  #- https://t.me/ssrList          #分享的是节点信息，https://fanqiangdang.com提供
+  - https://t.me/mftizi           #分享的是节点信息
+  #- https://t.me/vmess_tg         #有源，有节点
+  - https://t.me/freev2rays       #分享的是节点信息
+  #- https://t.me/v2list           #分享的是节点信息，https://fanqiangdang.com提供
+  #下面是自己添加的，好像都是分享的节点信息，订阅源抓不到
+  - https://t.me/yaney_01
+  - https://t.me/bamboo_vpn
+  - https://t.me/maxshare
+  - https://t.me/BmFt1
+  - https://t.me/fffffx2
+  #- https://t.me/gulaiguq_baipiao2
+  - https://t.me/Jsnzk
+  - https://t.me/wbnet
+  - https://t.me/go4sharing
+  #- https://t.me/miaomua
+  #- https://t.me/allporter
+  - https://t.me/freekankan
+  #- https://t.me/baipiao01
+  - https://t.me/vpnhat
+  - https://t.me/dingyue_Center
+  - https://t.me/kxswa
+  - https://t.me/hkaa0
+  - https://t.me/iosfulishare
+  #- https://t.me/univstar
+  # 额外 TG 频道
+  - https://t.me/V2rayNGn
+  - https://t.me/free4allVPN
+  - https://t.me/PrivateVPNs
+  - https://t.me/V2rayng_Fast
+  - https://t.me/DirectVPN
+  # 2025-01-30 新增 (来自 TelegramV2rayCollector)
+  - https://t.me/ProxyFn
+  - https://t.me/v2ray_outlineir
+  - https://t.me/v2ray_swhil
+  - https://t.me/NetAccount
+  - https://t.me/oneclickvpnkeys
+  - https://t.me/daorzadannet
+  - https://t.me/LoRd_uL4mo
+  - https://t.me/Outline_Vpn
+  - https://t.me/vpn_xw
+  - https://t.me/prrofile_purple
+  - https://t.me/proxyymeliii
+  - https://t.me/ShadowSocks_s
+  - https://t.me/azadi_az_inja_migzare
+  - https://t.me/WomanLifeFreedomVPN
+  - https://t.me/MsV2ray
+  - https://t.me/internet4iran
+  - https://t.me/LegenderY_Servers
+  - https://t.me/vpnfail_v2ray
+  - https://t.me/free_v2rayy
+  - https://t.me/UnlimitedDev
+  - https://t.me/vmessorg
+  - https://t.me/v2rayNG_Matsuri
+  - https://t.me/v2ray1_ng
+  - https://t.me/v2rayngvpn
+  - https://t.me/vpn_ioss
+  - https://t.me/v2freevpn
+  - https://t.me/vless_vmess
+  - https://t.me/customv2ray
+  - https://t.me/FalconPolV2rayNG
+  - https://t.me/Jeyksatan
+  - https://t.me/MTConfig
+  - https://t.me/hassan_saboorii
+  - https://t.me/v2rayvmess
+  - https://t.me/v2rayNGNeT
+  - https://t.me/lagvpn13
+  - https://t.me/server01012
+  - https://t.me/ShadowProxy66
+  - https://t.me/ipV2Ray
+  - https://t.me/v2rayNG_VPNN
+  - https://t.me/kiava
+  - https://t.me/Helix_Servers
+  - https://t.me/PAINB0Y
+  - https://t.me/vmess_vless_v2rayng
+  - https://t.me/VpnProSec
+  - https://t.me/VlessConfig
+  - https://t.me/NIM_VPN_ir
+  - https://t.me/FreeIranT
+  - https://t.me/hashmakvpn
+  - https://t.me/X_Her0
+  - https://t.me/Napsternetvirani
+  - https://t.me/Cov2ray
+  - https://t.me/iran_ray
+  - https://t.me/INIT1984
+  - https://t.me/EXOGAMERS
+  - https://t.me/V2RayTz
+  - https://t.me/ServerNett
+  - https://t.me/Pinkpotatocloud
+  - https://t.me/CloudCityy
+  - https://t.me/VmessProtocol
+  - https://t.me/DarkVPNpro
+  - https://t.me/Qv2raychannel
+  - https://t.me/xrayzxn
+  - https://t.me/MehradLearn
+  - https://t.me/shopingv2ray
+  - https://t.me/xrayproxy
+  - https://t.me/Proxy_PJ
+  - https://t.me/SafeNet_Server
+  - https://t.me/ovpn2
+  - https://t.me/OutlineVpnOfficial
+  - https://t.me/proxy_kafee
+  - https://t.me/TheHotVPN
+  - https://t.me/lrnbymaa
+  - https://t.me/v2ray_vpn_ir
+  - https://t.me/ConfigsHUB
+  - https://t.me/freeconfigv2
+  - https://t.me/vpn_tehran
+  - https://t.me/v2_team
+  - https://t.me/AlienVPN402
+  - https://t.me/V2rayngninja
+  - https://t.me/iSegaro
 
-# Telegram 频道配置（已清理：上游来源已移除，仅保留 hub 动态抓取）
-tgchannel: []
-
-
-# 直连订阅源（由 scripts/fetch_hub.py 在每次运行时写入当天的 hub 订阅链接）
-subscribe: []
-
+# 直连订阅源 (Direct Subscription URLs) - GitHub/Websites
+subscribe:
+  - https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/Eternity
+  - https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/v2ray.txt
+  - https://raw.githubusercontent.com/tbbatbb/Proxy/master/dist/v2ray.config.txt
+  - https://raw.githubusercontent.com/vveg26/get_proxy/main/dist/v2ray.config.txt
+  - https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub6.txt
+  - https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/v2ray/all_sub.txt
+  # 订阅源补充 (GitHub 列表)
+  - https://raw.githubusercontent.com/ebrasha/free-v2ray-public-list/refs/heads/main/all_extracted_configs.txt
+  - https://raw.githubusercontent.com/yebekhe/TelegramV2rayCollector/main/subscribe/all.txt
+  - https://openproxylist.com/v2ray/rawlist/subscribe
+  - https://openproxylist.com/v2ray/rawlist/V2RAY_RAW.txt
+  # 2025-01-30 新增 (GitHub/Clash)
+  - https://raw.githubusercontent.com/mfuu/v2ray/master/clash.yaml
+  - https://raw.githubusercontent.com/anaer/Sub/main/clash.yaml
+  - https://raw.githubusercontent.com/SnapdragonLee/SystemProxy/master/dist/clash_config.yaml
 
 subconverter_backends:
   - api.dler.io
@@ -39,17 +195,21 @@ subconverter_backends:
   - sub.d1.mk
   # - sub.bgp.sh
 
-
-# 网页模糊抓取源（已清理：上游来源已移除）
-web_pages: []
-
+# 网页模糊抓取源 (Web Page Fuzzing Sources)
+# 程序将访问这些网页，并提取其中的 http/https 链接作为订阅源
+web_pages:
+  - https://merlinblog.xyz/wiki/freess.html
+  - https://fanqiangdang.com/forum-48-1.html
+  - https://github.com/ermaozi/get_subscribe
+  # 2025-01-30 新增
+  - https://deepwiki.com/free18/v2ray/4.2-free-subscription-options
+  - https://github.com/mermeroo/V2RAY-and-CLASH-Subscription-Links/blob/main/SUB%20LINKS
 
 sub_convert_apis:
   - api.dler.io
   - sub.xeton.dev
   - sub.id9.cc
   - sub.maoxiongnet.com
-
 
 # 节点质量筛选配置 (Node Quality Filter)
 quality_filter:
@@ -91,7 +251,6 @@ quality_filter:
     - vmess
     - ss
 
-
 # CN probe integration (optional). Provide a JSON result file or URL.
 cn_probe:
   enabled: false
@@ -100,7 +259,6 @@ cn_probe:
   weight: 1.0             # multiplier for CN bonus
   max_latency: 800        # ms threshold for penalty
   max_bonus: 6            # max bonus points from CN latency
-
 
 # 风险/钓鱼节点过滤（基于节点参数规则，默认只降分）
 # Dynamic blind probe head (optional)
@@ -118,7 +276,6 @@ dynamic_probe:
     - hysteria2
   save_path: runtime/probe_head.json
 
-
 # CN test proxy (optional)
 cn_test_proxy:
   enabled: false
@@ -130,7 +287,6 @@ cn_test_proxy:
   test_url: "https://www.google.com/generate_204"
   expected_status: 204
   required: true           # if true, fail CN test -> drop node
-
 
 # Third-party CN probe API (optional)
 cn_probe_api:
@@ -146,7 +302,6 @@ cn_probe_api:
   location_ok_field: "ok"
   ok_values: [true, "ok", 1]
   require_locations: ["北京", "上海", "广州"]
-
 
 risk_filter:
   enabled: true
@@ -187,7 +342,6 @@ risk_filter:
     path_phishing: false
     allow_insecure: false
     security_none: false
-
 
 # IP风险/纯净度检测 (IP Risk Check) - 评分模式
 ip_risk_check:
