@@ -14,114 +14,112 @@ on:
 # 赋予 GITHUB_TOKEN 写权限
 permissions:
   contents: write
+
 jobs:
   fetch:
     runs-on: ubuntu-latest
     timeout-minutes: 30  # 防止执行时间过长（30分钟超时）
     steps:
 
-      - name: 迁出代码
-        uses: actions/checkout@v4
+    - name: 迁出代码
+      uses: actions/checkout@v4
 
-      - name: 安装Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
+    - name: 安装Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
 
-      - name: 加载缓存
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
+    - name: 加载缓存
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
 
-      - name: 缓存代理二进制
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/smartsub
-          key: ${{ runner.os }}-smartsub-binaries-${{ hashFiles('scripts/download_singbox.py', 'scripts/download_mihomo.py') }}
-          restore-keys: |
-            ${{ runner.os }}-smartsub-binaries-
+    - name: 缓存代理二进制
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/smartsub
+        key: ${{ runner.os }}-smartsub-binaries-${{ hashFiles('scripts/download_singbox.py', 'scripts/download_mihomo.py') }}
+        restore-keys: |
+          ${{ runner.os }}-smartsub-binaries-
 
-      - name: 设置时区
-        run: sudo timedatectl set-timezone 'Asia/Shanghai'
+    - name: 设置时区
+      run: sudo timedatectl set-timezone 'Asia/Shanghai'
 
-      - name: 安装依赖
-        run: |
-          pip install -r ./requirements.txt
+    - name: 安装依赖
+      run: |
+        pip install -r ./requirements.txt
 
-      - name: 配置自检
-        run: |
-          python scripts/self_check.py || echo "⚠️ self_check 提示警告"
+    - name: 配置自检
+      run: |
+        python scripts/self_check.py || echo "⚠️ self_check 提示警告"
 
-      - name: 验证 Secrets 配置
-        env:
-          GIST_TOKEN: ${{ secrets.GIST_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GIST_ID: ${{ secrets.GIST_ID }}
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: |
-          chmod +x scripts/validate_secrets.sh
-          bash scripts/validate_secrets.sh
+    - name: 验证 Secrets 配置
+      env:
+        GIST_TOKEN: ${{ secrets.GIST_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GIST_ID: ${{ secrets.GIST_ID }}
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      run: |
+        chmod +x scripts/validate_secrets.sh
+        bash scripts/validate_secrets.sh
 
-      - name: Fetch hub subscription
-        run: python scripts/fetch_hub.py
+    - name: Run main.py
+      env:
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        SERVERCHAN_KEY: ${{ secrets.SERVERCHAN_KEY }}
+        PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
+      run: |
+        python ./main.py || echo "⚠️ main.py 执行遇到错误，但继续执行"
 
-      - name: Run main.py
-        env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          SERVERCHAN_KEY: ${{ secrets.SERVERCHAN_KEY }}
-          PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
-        run: |
-          python ./main.py || echo "⚠️ main.py 执行遇到错误，但继续执行"
+    - name: Select dynamic probe head (optional)
+      if: success() || failure()
+      run: |
+        if [ -s "collected_nodes.txt" ]; then
+          echo "🛰️ Selecting dynamic probe head..."
+          python ./node_quality_filter.py --probe-only || echo "⚠️ probe-only 执行失败"
+        else
+          echo "⚠️ collected_nodes.txt 不存在或为空，跳过动态探测头"
+        fi
 
-      - name: Select dynamic probe head (optional)
-        if: success() || failure()
-        run: |
-          if [ -s "collected_nodes.txt" ]; then
-            echo "🛰️ Selecting dynamic probe head..."
-            python ./node_quality_filter.py --probe-only || echo "⚠️ probe-only 执行失败"
+    - name: Bootstrap sing-box proxy (optional)
+      if: success() || failure()
+      env:
+        FALLBACK_PROXY_URL: ${{ vars.DYNAMIC_PROBE_PROXY_URL }}
+      run: |
+        PROXY_URL=""
+        mkdir -p runtime
+        if [ -f "runtime/probe_head.json" ]; then
+          echo "🧩 生成 sing-box 配置..."
+          python ./scripts/generate_singbox_config.py --probe-json runtime/probe_head.json --output runtime/singbox-probe.json --http-port 7891 --socks-port 7890
+          echo "⬇️ 下载 sing-box..."
+          python ./scripts/download_singbox.py --output ./sing-box
+          chmod +x ./sing-box
+          ./sing-box version || true
+          echo "🔎 校验 sing-box 配置..."
+          if ! ./sing-box check -c runtime/singbox-probe.json; then
+            echo "⚠️ sing-box 配置校验失败，切换备用客户端"
           else
-            echo "⚠️ collected_nodes.txt 不存在或为空，跳过动态探测头"
-          fi
-
-      - name: Bootstrap sing-box proxy (optional)
-        if: success() || failure()
-        env:
-          FALLBACK_PROXY_URL: ${{ vars.DYNAMIC_PROBE_PROXY_URL }}
-        run: |
-          PROXY_URL=""
-          mkdir -p runtime
-          if [ -f "runtime/probe_head.json" ]; then
-            echo "🧩 生成 sing-box 配置..."
-            python ./scripts/generate_singbox_config.py --probe-json runtime/probe_head.json --output runtime/singbox-probe.json --http-port 7891 --socks-port 7890
-            echo "⬇️ 下载 sing-box..."
-            python ./scripts/download_singbox.py --output ./sing-box
-            chmod +x ./sing-box
-            ./sing-box version || true
-            echo "🔍 校验 sing-box 配置..."
-            if ! ./sing-box check -c runtime/singbox-probe.json; then
-              echo "⚠️ sing-box 配置校验失败，切换备用客户端"
+            echo "🚀 启动 sing-box 本地代理..."
+            ./sing-box run -c runtime/singbox-probe.json > runtime/singbox.log 2>&1 &
+            sleep 5
+            if curl -fsS -m 8 --connect-timeout 5 -x http://127.0.0.1:7891 https://www.google.com/generate_204 >/dev/null; then
+              PROXY_URL="http://127.0.0.1:7891"
+              echo "SINGBOX_PROXY_STARTED=1" >> $GITHUB_ENV
+              echo "✅ sing-box 代理可用"
             else
-              echo "🚀 启动 sing-box 本地代理..."
-              ./sing-box run -c runtime/singbox-probe.json > runtime/singbox.log 2>&1 &
-              sleep 5
-              if curl -fsS -m 8 --connect-timeout 5 -x http://127.0.0.1:7891 https://www.google.com/generate_204 >/dev/null; then
-                PROXY_URL="http://127.0.0.1:7891"
-                echo "SINGBOX_PROXY_STARTED=1" >> $GITHUB_ENV
-                echo "✅ sing-box 代理可用"
-              else
-                echo "⚠️ sing-box 代理测试失败，切换备用客户端"
-                echo "---- sing-box.log (tail) ----"
-                tail -n 200 runtime/singbox.log || true
-                ps aux | grep '[s]ing-box' || true
-                ss -lntp 2>/dev/null | grep 7891 || true
-              fi
+              echo "⚠️ sing-box 代理测试失败，切换备用客户端"
+              echo "---- sing-box.log (tail) ----"
+              tail -n 200 runtime/singbox.log || true
+              ps aux | grep '[s]ing-box' || true
+              ss -lntp 2>/dev/null | grep 7891 || true
             fi
+          fi
 
           if [ -z "$PROXY_URL" ]; then
             echo "🧩 生成 mihomo 配置..."
@@ -154,75 +152,74 @@ jobs:
           else
             echo "⚠️ 本地代理失败，且未配置回退代理"
           fi
-          elif [ -n "$FALLBACK_PROXY_URL" ]; then
-            echo "⚠️ 未生成 probe_head.json，使用回退代理"
-            echo "DYNAMIC_PROBE_PROXY_URL=$FALLBACK_PROXY_URL" >> $GITHUB_ENV
+        elif [ -n "$FALLBACK_PROXY_URL" ]; then
+          echo "⚠️ 未生成 probe_head.json，使用回退代理"
+          echo "DYNAMIC_PROBE_PROXY_URL=$FALLBACK_PROXY_URL" >> $GITHUB_ENV
+        else
+          echo "⚠️ 未生成 probe_head.json，且未配置回退代理"
+        fi
+
+    - name: Fetch CN probe results (optional)
+      env:
+        CN_PROBE_URL: ${{ secrets.CN_PROBE_URL }}
+        CN_PROBE_TOKEN: ${{ secrets.CN_PROBE_TOKEN }}
+      if: ${{ env.CN_PROBE_URL != '' }}
+      run: |
+        mkdir -p sub
+        if [ -n "$CN_PROBE_URL" ]; then
+          echo "Fetching CN probe results..."
+          if [ -n "$CN_PROBE_TOKEN" ]; then
+            curl -fsSL -H "Authorization: Bearer $CN_PROBE_TOKEN" "$CN_PROBE_URL" -o sub/cn_probe.json || echo "⚠️ CN probe fetch failed"
           else
-            echo "⚠️ 未生成 probe_head.json，且未配置回退代理"
+            curl -fsSL "$CN_PROBE_URL" -o sub/cn_probe.json || echo "⚠️ CN probe fetch failed"
           fi
+        fi
 
-      - name: Fetch CN probe results (optional)
-        env:
-          CN_PROBE_URL: ${{ secrets.CN_PROBE_URL }}
-          CN_PROBE_TOKEN: ${{ secrets.CN_PROBE_TOKEN }}
-        if: ${{ env.CN_PROBE_URL != '' }}
-        run: |
-          mkdir -p sub
-          if [ -n "$CN_PROBE_URL" ]; then
-            echo "Fetching CN probe results..."
-            if [ -n "$CN_PROBE_TOKEN" ]; then
-              curl -fsSL -H "Authorization: Bearer $CN_PROBE_TOKEN" "$CN_PROBE_URL" -o sub/cn_probe.json || echo "⚠️ CN probe fetch failed"
-            else
-              curl -fsSL "$CN_PROBE_URL" -o sub/cn_probe.json || echo "⚠️ CN probe fetch failed"
-            fi
-          fi
+    - name: Run Quality Filter & Push to Telegram
+      # 只在有节点文件时才运行筛选
+      if: success() || failure()  # 即使main.py失败也尝试筛选
+      timeout-minutes: 20  # 单步超时限制（防止IP检测或测试过多导致超时）
+      env:
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        ABUSEIPDB_API_KEY: ${{ secrets.ABUSEIPDB_API_KEY }}
+        # 优先使用 GIST_TOKEN (需要用户创建 PAT 并赋予 gist 权限)
+        # 如果不存在，尝试使用默认 GITHUB_TOKEN (通常没有 gist 权限，只能用于非 gist 操作)
+        GITHUB_TOKEN: ${{ secrets.GIST_TOKEN || secrets.GITHUB_TOKEN }}
+        GIST_ID: ${{ secrets.GIST_ID }}
+      run: |
+        # 检查是否有节点可以筛选
+        if [ -f "sub/sub_all_url_check.txt" ] || [ -f "collected_nodes.txt" ]; then
+          echo "✅ 发现节点文件，开始筛选..."
+          python ./node_quality_filter.py || echo "⚠️ 节点筛选遇到错误"
 
-      - name: Run Quality Filter & Push to Telegram
-        # 只有在节点文件时才运行筛选
-        if: success() || failure()  # 即使main.py失败也尝试筛选
-        timeout-minutes: 20  # 单步超时限制（防止IP检测或测试过多导致超时）
-        env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          ABUSEIPDB_API_KEY: ${{ secrets.ABUSEIPDB_API_KEY }}
-          # 优先使用 GIST_TOKEN (需要用户创建 PAT 并赋予 gist 权限)
-          # 如果不存在，尝试使用默认 GITHUB_TOKEN (通常没有 gist 权限，只能用于非 gist 操作)
-          GITHUB_TOKEN: ${{ secrets.GIST_TOKEN || secrets.GITHUB_TOKEN }}
-          GIST_ID: ${{ secrets.GIST_ID }}
-        run: |
-          # 检查是否有节点可以筛选
-          if [ -f "sub/sub_all_url_check.txt" ] || [ -f "collected_nodes.txt" ]; then
-            echo "✅ 发现节点文件，开始筛选..."
-            python ./node_quality_filter.py || echo "⚠️ 节点筛选遇到错误"
-
-            # 生成订阅 URL (如果节点筛选成功)
-            if [ -f "sub/high_quality_nodes.txt" ]; then
-              echo "🔗 生成订阅 URL..."
-              python ./generate_subscription_url.py || echo "⚠️ 订阅URL生成遇到错误"
-            else
-              echo "⚠️ 未发现高质量节点文件，跳过订阅URL生成"
-            fi
+          # 生成订阅 URL (如果节点筛选成功)
+          if [ -f "sub/high_quality_nodes.txt" ]; then
+            echo "🔗 生成订阅 URL..."
+            python ./generate_subscription_url.py || echo "⚠️ 订阅URL生成遇到错误"
           else
-            echo "⚠️ 未发现节点文件，跳过筛选"
+            echo "⚠️ 未发现高质量节点文件，跳过订阅URL生成"
           fi
+        else
+          echo "⚠️ 未发现节点文件，跳过筛选"
+        fi
 
-      - name: Commit
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
+    - name: Commit
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
 
-          # 添加文件 (分别处理，避免一个失败影响全部)
-          git add ./sub || true
-          git add ./collected_nodes.txt || true
-          git add -f ./failed_subscriptions.log || true
-          git add ./blacklist.txt || true
+        # 添加文件（分别处理，避免一个失败影响全部）
+        git add ./sub || true
+        git add ./collected_nodes.txt || true
+        git add -f ./failed_subscriptions.log || true
+        git add ./blacklist.txt || true
 
-          # 检查是否有变更
-          if git diff --staged --quiet; then
-            echo "📝 没有文件变更，跳过提交"
-          else
-            git commit -m "🍀 爬取订阅源 $(date '+%Y-%m-%d %H:%M:%S')"
-          fi
+        # 检查是否有变更
+        if git diff --staged --quiet; then
+          echo "📝 没有文件变更，跳过提交"
+        else
+          git commit -m "🍀 爬取订阅源 $(date '+%Y-%m-%d %H:%M:%S')"
 
           # 捕获任何在 commit 后生成的文件变更
           git add ./sub || true
@@ -237,11 +234,12 @@ jobs:
 
           # Pull latest changes to avoid conflict (使用 autostash 自动处理未暂存的变更)
           git pull --rebase --autostash origin main
+        fi
 
-      - name: 推送更改
-        # 只有在有提交时才推送
-        if: success()
-        uses:  ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
+    - name: 推送更改
+      # 只在有提交时才推送
+      if: success()
+      uses:  ad-m/github-push-action@master
+      with:
+         github_token: ${{ secrets.GITHUB_TOKEN }}
+         branch: main
