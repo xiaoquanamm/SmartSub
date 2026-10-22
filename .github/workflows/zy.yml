@@ -1,0 +1,25 @@
+name: Update ZYFXS Mirror
+
+on:
+  schedule:
+    - cron: "12 0 * * *"
+    - cron: "12 13 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch latest ZYFXS files
+        run: python3 zy/update_zy.py
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add zy-clash.yaml zy-v2ray.txt
+          git diff --cached --quiet || git commit -m "Update ZYFXS mirror"
+          git push
