@@ -21,7 +21,8 @@ USER_AGENT = (
     "Chrome/126.0.0.0 Safari/537.36"
 )
 
-CONFIG_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config.yaml")
+CONFIG_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                           "..", "config.yaml")
 
 
 def http_get_text(url, timeout=30):
@@ -31,101 +32,131 @@ def http_get_text(url, timeout=30):
         return resp.read().decode(charset, errors="replace")
 
 
-def extract_token(html):
-    """token 由服务端按天轮换，随首页 HTML 下发，直接用正则提取。"""
-    m = re.search(r"share_sub\?token=([0-9a-fA-F]+)", html)
-    if m:
-        return m.group(1)
-    # 兜底：在 JS 变量中查找 token
-    m = re.search(r"""["']token["']\s*[:=]\s*["']([0-9a-fA-F]{8,})["']""", html)
-    if m:
-        return m.group(1)
-    return None
+def extract_tokens(html):
+    """收集页面中所有可能的 token 候选（按出现顺序去重）。
+
+    首页 HTML 中可能出现多个 share_sub?token= 链接（例如示例/过期值），
+    其中只有当天有效 token 能通过内容校验，因此必须逐个校验而非取第一个。
+    """
+    candidates = []
+    for m in re.finditer(r"share_sub\?token=([0-9a-fA-F]{8,128})", html):
+        tok = m.group(1)
+        if tok not in candidates:
+            candidates.append(tok)
+    # 兜底：在页面 JS 中寻找形如 "token": "..." 的定义
+    for m in re.finditer(
+            r'["\']token["\']\s*[:=]\s*["\']([0-9a-fA-F]{8,128})["\']',
+            html):
+        tok = m.group(1)
+        if tok not in candidates:
+            candidates.append(tok)
+    return candidates
 
 
 def validate_subscription(url, timeout=30):
-    """校验拼出的订阅链接确实返回 base64 编码的节点内容。"""
-    body = http_get_text(url, timeout=timeout)
-    blob = "".join(body.split())
-    if len(blob) < 128:
-        raise ValueError("订阅内容过短（%d 字符），疑似无效" % len(blob))
-    padded = blob + "=" * (-len(blob) % 4)
+    """校验订阅链接是否有效。
+
+    有效的 share_sub 链接返回 Base64 编码的节点内容（去空白后长度 >= 128、
+    可 Base64 解码、解码结果含 "://"）；过期的 token 则返回 HTTP 403
+    （页面提示「链接已过期」）。
+    """
+    text = http_get_text(url, timeout=timeout)
+    compact = re.sub(r"\s+", "", text)
+    if len(compact) < 128:
+        raise ValueError("订阅内容过短（%d 字符）" % len(compact))
     try:
-        raw = base64.b64decode(padded, validate=False)
-    except Exception as exc:
-        raise ValueError("订阅内容不是合法的 base64：%s" % exc)
-    if b"://" not in raw:
-        raise ValueError("解码后内容不包含节点链接")
-    return raw
+        decoded = base64.b64decode(compact + "=" * (-len(compact) % 4))
+    except Exception as e:
+        raise ValueError("订阅内容不是有效的 Base64: %s" % e)
+    if b"://" not in decoded:
+        raise ValueError("订阅内容解码后不含节点链接")
+    return True
 
 
-def update_config_subscribe(config_path, url):
-    """在 config.yaml 的 subscribe 列表中删掉旧的 hub 行，追加新的 hub 订阅链接。"""
-    with open(config_path, "r", encoding="utf-8") as f:
-        text = f.read()
+def update_config_subscribe(new_url):
+    """把新的 hub 订阅链接写入 config.yaml 的 subscribe 列表。
 
-    lines = text.split("\n")
+    先删除已有的 hub.ccwork.nyc.mn/share_sub 旧行（保留其他来源），
+    再把新 URL 追加到列表末尾，保持两空格缩进。
+    """
+    with open(CONFIG_PATH, "r", encoding="utf-8") as f:
+        lines = f.readlines()
+
     out = []
-    i = 0
-    found = False
-    while i < len(lines):
-        line = lines[i]
-        m = re.match(r"^(\s*)subscribe:\s*(\[\s*\])?\s*(#.*)?$", line)
-        if m and not found:
-            found = True
-            indent = m.group(1)
-            comment = (" " + m.group(3)) if m.group(3) else ""
-            out.append("%ssubscribe:%s" % (indent, comment))
-            item_indent = indent + "  "
-            i += 1
-            # 消费旧的列表内容：删掉 hub 旧行，其它行原样保留
-            while i < len(lines):
-                nxt = lines[i]
-                if re.match(r"^[A-Za-z_][\w\-]*\s*:", nxt):
-                    break
-                if HUB_HOST_MARK not in nxt:
-                    out.append(nxt)
-                i += 1
-            out.append("%s- %s" % (item_indent, url))
+    in_subscribe = False
+    subscribe_indent = None
+    inserted = False
+
+    for line in lines:
+        stripped = line.strip()
+        if re.match(r"^subscribe\s*:", line):
+            in_subscribe = True
+            subscribe_indent = line[:len(line) - len(line.lstrip())]
+            if stripped in ("subscribe:", "subscribe: []"):
+                out.append(subscribe_indent + "subscribe:\n")
+            else:
+                out.append(line)
+            continue
+        if in_subscribe:
+            # 顶层段结束（遇到下一个无缩进的键）
+            if line and not line[0].isspace() and stripped:
+                if not inserted:
+                    out.append("  - %s\n" % new_url)
+                    inserted = True
+                in_subscribe = False
+                out.append(line)
+                continue
+            if HUB_HOST_MARK in line:
+                # 删除旧的 hub 订阅行
+                continue
+            out.append(line)
             continue
         out.append(line)
-        i += 1
 
-    if not found:
-        raise RuntimeError("config.yaml 中未找到顶层 subscribe: 键")
+    if in_subscribe and not inserted:
+        out.append("  - %s\n" % new_url)
+        inserted = True
 
-    with open(config_path, "w", encoding="utf-8") as f:
-        f.write("\n".join(out))
+    with open(CONFIG_PATH, "w", encoding="utf-8") as f:
+        f.writelines(out)
 
 
 def main():
     try:
         html = http_get_text(HUB_HOME)
-    except Exception as exc:
-        print("错误：获取 hub 首页失败：%s" % exc, file=sys.stderr)
+    except Exception as e:
+        print("错误：无法获取 hub 首页：%s" % e, file=sys.stderr)
         return 1
 
-    token = extract_token(html)
-    if not token:
-        print("错误：未能从 hub 首页提取到 share_sub token", file=sys.stderr)
+    tokens = extract_tokens(html)
+    if not tokens:
+        print("错误：未能从 hub 首页提取到任何 token 候选",
+              file=sys.stderr)
         return 1
 
-    url = HUB_SUB_PREFIX + token
-    try:
-        validate_subscription(url)
-    except Exception as exc:
-        print("错误：订阅链接校验失败（%s）：%s" % (url, exc), file=sys.stderr)
-        return 1
+    print("找到 %d 个 token 候选，逐个校验..." % len(tokens))
+    errors = []
+    for token in tokens:
+        url = HUB_SUB_PREFIX + token
+        try:
+            validate_subscription(url)
+        except Exception as e:
+            errors.append("token %s... 无效：%s" % (token[:8], e))
+            continue
+        # 校验通过，写入 config 并输出 URL
+        try:
+            update_config_subscribe(url)
+        except Exception as e:
+            print("错误：写入 config.yaml 失败：%s" % e, file=sys.stderr)
+            return 1
+        print("hub 订阅链接：%s" % url)
+        print("已写入 config.yaml 的 subscribe 列表")
+        return 0
 
-    try:
-        update_config_subscribe(CONFIG_PATH, url)
-    except Exception as exc:
-        print("错误：写入 config.yaml 失败：%s" % exc, file=sys.stderr)
-        return 1
-
-    print("hub 订阅链接：%s" % url)
-    print("已写入 config.yaml 的 subscribe 列表")
-    return 0
+    print("错误：所有 token 候选均校验失败：", file=sys.stderr)
+    for err in errors:
+        print("  - %s" % err, file=sys.stderr)
+    return 1
 
 
 if __name__ == "__main__":
