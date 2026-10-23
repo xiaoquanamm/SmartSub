@@ -16,10 +16,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Fetch latest ZYFXS files
         run: python3 zy/update_zy.py
-      - name: Commit if changed
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add zy-clash.yaml zy-v2ray.txt
-          git diff --cached --quiet || git commit -m "Update ZYFXS mirror"
-          git push
+      - name: Push to secret gist
+        env:
+          GIST_TOKEN: ${{ secrets.GIST_TOKEN }}
+          MIRROR_GIST_ID: "1b96b5c80faebc6bac9429fbf5e86305"
+        run: python3 gist/push_gist.py zy-clash.yaml zy-v2ray.txt
