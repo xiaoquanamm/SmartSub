@@ -1,25 +1,23 @@
 name: Update Hub Clash
+
 on:
   push:
     paths:
       - hub/token.txt
   workflow_dispatch:
+
+permissions:
+  contents: write
+
 jobs:
   update:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - name: Build hub-clash.yaml
-        run: python hub/update_hub.py
-      - name: Commit if changed
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add hub-clash.yaml
-          git diff --cached --quiet || git commit -m "Update hub clash"
-          git push
+      - name: Fetch hub and build clash yaml
+        run: python3 hub/update_hub.py
+      - name: Push to secret gist
+        env:
+          GIST_TOKEN: ${{ secrets.GIST_TOKEN }}
+          MIRROR_GIST_ID: "1b96b5c80faebc6bac9429fbf5e86305"
+        run: python3 gist/push_gist.py hub-clash.yaml
