@@ -2,7 +2,7 @@ name: Update ZYFXS Mirror
 
 on:
   schedule:
-    - cron: "0 4 * * *"
+    - cron: "0 3 * * *"
     - cron: "12 13 * * *"
   workflow_dispatch:
 
