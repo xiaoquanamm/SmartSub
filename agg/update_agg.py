@@ -227,26 +227,78 @@ def main():
     # indent every line by 2 spaces so list items sit under "proxies:"
     body = header + "\n".join(("  " + ln) if ln.strip() else ln
                               for ln in dumped.splitlines())
-    # proxy groups: manual select + auto url-test
+    # ---- ZYFXS-style proxy groups, rule providers and rules ----
     names = [p["name"] for p in all_proxies]
     def qname(n):
-        return yaml.safe_dump(n, allow_unicode=True,
-                              default_flow_style=True).strip()
+        # JSON double-quoted strings are always valid YAML scalars
+        return json.dumps(n, ensure_ascii=False)
+
+    RULESETS = [
+        ("LocalAreaNetwork", "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list"),
+        ("BanAD", "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list"),
+        ("BanProgramAD", "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list"),
+        ("GoogleCN", "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/GoogleCN.list"),
+        ("SteamCN", "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/SteamCN.list"),
+        ("Microsoft", "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Microsoft.list"),
+        ("Apple", "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Apple.list"),
+        ("ProxyMedia", "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyMedia.list"),
+        ("Telegram", "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Telegram.list"),
+        ("ProxyLite", "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyLite.list"),
+        ("ChinaDomain", "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list"),
+        ("ChinaCompanyIp", "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list"),
+    ]
+    body += "\nrule-providers:\n"
+    for rs, url in RULESETS:
+        body += (f"  {rs}:\n    type: http\n    behavior: classical\n"
+                 f"    format: text\n    url: {url}\n"
+                 f"    path: ./rules/{rs}.list\n    interval: 86400\n")
+
+    G_MAIN = "\U0001F680 \u8282\u70B9\u9009\u62E9"
+    G_AUTO = "\u267B\uFE0F \u81EA\u52A8\u9009\u62E9"
+    G_MEDIA = "\U0001F30D \u56FD\u5916\u5A92\u4F53"
+    G_TG = "\U0001F4F2 \u7535\u62A5\u4FE1\u606F"
+    G_MS = "\u24C2\uFE0F \u5FAE\u8F6F\u670D\u52A1"
+    G_APPLE = "\U0001F34E \u82F9\u679C\u670D\u52A1"
+    G_DIRECT = "\U0001F3AF \u5168\u7403\u76F4\u8FDE"
+    G_REJECT = "\U0001F6D1 \u5168\u7403\u62E6\u622A"
+    G_ADM = "\U0001F343 \u5E94\u7528\u51C0\u5316"
+    G_FINAL = "\U0001F41F \u6F0F\u7F51\u4E4B\u9C7C"
+
+    def group(name, gtype, entries):
+        s = f'  - name: "{name}"\n    type: {gtype}\n    proxies:\n'
+        for e in entries:
+            s += f"      - {qname(e)}\n"
+        return s
+
     body += "\nproxy-groups:\n"
-    body += ('  - name: "PROXY"\n    type: select\n    proxies:\n'
-             '      - "AUTO"\n      - "DIRECT"\n')
+    body += group(G_MAIN, "select", [G_AUTO, "DIRECT"] + names)
+    body += (f'  - name: "{G_AUTO}"\n    type: url-test\n'
+             f'    url: http://www.gstatic.com/generate_204\n'
+             f'    interval: 300\n    proxies:\n')
     for n in names:
         body += f"      - {qname(n)}\n"
-    body += ('  - name: "AUTO"\n    type: url-test\n'
-             '    url: http://www.gstatic.com/generate_204\n'
-             '    interval: 300\n    proxies:\n')
-    for n in names:
-        body += f"      - {qname(n)}\n"
-    # rules: domestic direct, everything else via proxy
+    body += group(G_MEDIA, "select", [G_MAIN, G_AUTO, G_DIRECT] + names)
+    body += group(G_TG, "select", [G_MAIN, G_DIRECT] + names)
+    body += group(G_MS, "select", [G_DIRECT, G_MAIN] + names)
+    body += group(G_APPLE, "select", [G_MAIN, G_DIRECT] + names)
+    body += group(G_DIRECT, "select", ["DIRECT", G_MAIN, G_AUTO])
+    body += group(G_REJECT, "select", ["REJECT", "DIRECT"])
+    body += group(G_ADM, "select", ["REJECT", "DIRECT"])
+    body += group(G_FINAL, "select", [G_MAIN, G_DIRECT, G_AUTO] + names)
+
     body += ("rules:\n"
-             "  - DOMAIN-SUFFIX,cn,DIRECT\n"
-             "  - GEOIP,CN,DIRECT\n"
-             "  - MATCH,PROXY\n")
+             f"  - DOMAIN-SUFFIX,nodebuf.com,{G_MAIN}\n"
+             f"  - RULE-SET,LocalAreaNetwork,{G_DIRECT}\n"
+             f"  - RULE-SET,BanAD,{G_REJECT}\n"
+             f"  - RULE-SET,Microsoft,{G_MS}\n"
+             f"  - RULE-SET,Apple,{G_APPLE}\n"
+             f"  - RULE-SET,ProxyMedia,{G_MEDIA}\n"
+             f"  - RULE-SET,Telegram,{G_TG}\n"
+             f"  - RULE-SET,ProxyLite,{G_MAIN}\n"
+             f"  - RULE-SET,ChinaDomain,{G_DIRECT}\n"
+             f"  - RULE-SET,ChinaCompanyIp,{G_DIRECT}\n"
+             f"  - GEOIP,CN,{G_DIRECT}\n"
+             f"  - MATCH,{G_FINAL}\n")
     with open("agg-clash.yaml", "w", encoding="utf-8") as f:
         f.write(body)
     print(f"WROTE agg-clash.yaml with {len(all_proxies)} proxies: {stats}")
