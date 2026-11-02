@@ -1,0 +1,24 @@
+name: Update Agg Clash
+
+on:
+  schedule:
+    - cron: '0 1,13 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Aggregate free nodes and build clash yaml
+        run: |
+          pip install pyyaml -q
+          python3 agg/update_agg.py
+      - name: Push to secret gist
+        env:
+          GIST_TOKEN: ${{ secrets.GIST_TOKEN }}
+          MIRROR_GIST_ID: "1b96b5c80faebc6bac9429fbf5e86305"
+        run: python3 gist/push_gist.py agg-clash.yaml
