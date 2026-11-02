@@ -224,10 +224,31 @@ def main():
     header = ("port: 7890\nsocks-port: 7891\nallow-lan: true\nmode: Rule\n"
               "log-level: info\nproxies:\n")
     dumped = yaml.safe_dump(all_proxies, allow_unicode=True, default_flow_style=False)
+    # indent every line by 2 spaces so list items sit under "proxies:"
     body = header + "\n".join(("  " + ln) if ln.strip() else ln
                               for ln in dumped.splitlines())
+    # proxy groups: manual select + auto url-test
+    names = [p["name"] for p in all_proxies]
+    def qname(n):
+        return yaml.safe_dump(n, allow_unicode=True,
+                              default_flow_style=True).strip()
+    body += "\nproxy-groups:\n"
+    body += ('  - name: "PROXY"\n    type: select\n    proxies:\n'
+             '      - "AUTO"\n      - "DIRECT"\n')
+    for n in names:
+        body += f"      - {qname(n)}\n"
+    body += ('  - name: "AUTO"\n    type: url-test\n'
+             '    url: http://www.gstatic.com/generate_204\n'
+             '    interval: 300\n    proxies:\n')
+    for n in names:
+        body += f"      - {qname(n)}\n"
+    # rules: domestic direct, everything else via proxy
+    body += ("rules:\n"
+             "  - DOMAIN-SUFFIX,cn,DIRECT\n"
+             "  - GEOIP,CN,DIRECT\n"
+             "  - MATCH,PROXY\n")
     with open("agg-clash.yaml", "w", encoding="utf-8") as f:
-        f.write(body + "\n")
+        f.write(body)
     print(f"WROTE agg-clash.yaml with {len(all_proxies)} proxies: {stats}")
 
 if __name__ == "__main__":
