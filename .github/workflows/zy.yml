@@ -16,6 +16,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Fetch latest ZYFXS files
         run: python3 zy/update_zy.py
+      - name: Merge FXRJ nodes into ZYFXS subscription
+        run: python3 zy/merge_fxrj.py
       - name: Push to secret gist
         env:
           GIST_TOKEN: ${{ secrets.GIST_TOKEN }}
