@@ -1,0 +1,27 @@
+name: Update FXRJ Mirror
+
+on:
+  schedule:
+    - cron: "0 2 * * *"
+    - cron: "0 14 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch latest FXRJ files
+        run: |
+          curl -sL "https://raw.githubusercontent.com/2OTT/Free-Nodes/refs/heads/main/Nodes/fxrj.yaml" -o fxrj-clash.yaml
+          curl -sL "https://raw.githubusercontent.com/2OTT/Free-Nodes/refs/heads/main/Nodes/fxrj.txt" -o fxrj-v2ray.txt
+          wc -c fxrj-clash.yaml fxrj-v2ray.txt
+          grep -c "name:" fxrj-clash.yaml || true
+      - name: Push to secret gist
+        env:
+          GIST_TOKEN: ${{ secrets.GIST_TOKEN }}
+          MIRROR_GIST_ID: "1b96b5c80faebc6bac9429fbf5e86305"
+        run: python3 gist/push_gist.py fxrj-clash.yaml fxrj-v2ray.txt
